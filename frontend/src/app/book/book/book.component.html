@@ -1,0 +1,44 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <div class="row home">
+        <a role="button" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <span>Accueil</span>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <img [src]="book.image_path" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <a role="button">Valider<i class="bi bi-hand-thumbs-up-fill text-info"></i></a>
+                </div>
+                <div class="col-6">
+                    <a role="button">Rejeter<i class="bi bi-hand-thumbs-down-fill text-info"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+                Nom:{{ book.filename }}<br>
+                Domaine:{{ book.domain }}<br>
+                Type:{{ book.type }}<br>
+                Faculté:{{ book.faculty }}<br>
+                Description:{{ book.description }}<br>
+                Note:{{book.liked}}<i class="bi bi-star-fill text-warning"></i><br>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-8 m-auto">
+                <a (click)="toPreview()">
+                    <button class="m-2">Apercu</button>
+                </a>
+                <a [href]="book.path" download>
+                    <button class="m-2">Telecharger</button>
+                </a>
+        </div>
+    </div>
+</div>

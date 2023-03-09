@@ -1,0 +1,51 @@
+$primary-color:rgb(171, 104, 123);
+
+.row .choice{
+    border-color:$primary-color;
+}
+
+
+
+html,body{
+    height:100%;
+}
+
+.fill{
+    min-height:100%;
+    height:100%;
+}
+
+
+.title{
+    top:-50%;
+}
+:root{
+    --offcanvas-width:100px;
+}
+.sidebar-nav{
+    width: 300px;
+}
+@media (min-width: 900px){
+    .body{
+        // overflow: hidden !important;
+    }
+    main{
+        margin-left: 300px;
+    }
+    .offcanvas-backdrop::before{
+        display:none;
+    }
+    .sidebar-nav{
+        transform:none;
+        visibility:visible !important;
+        top:56px;
+
+    }
+}
+.bi-box-arrow-in-left{
+    font-size:2.5em;
+}
+
+.me-auto li{
+    font-size:1.5em;    
+}

@@ -1,0 +1,44 @@
+<div class="search container">
+    <form class="d-flex flex-wrap align-items-start flex-column w-auto"
+        [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+            <input
+            formControlName="keyword" 
+            type="search"
+            class="form-control"
+            placeholder="Chercher un livre"
+            aria-label="Search"
+          />
+            <button class="btn btn-outline-primary" type="submit" name="submit">Search</button>       
+        </div>
+        <div class="w-50 m-auto">
+            <input type="radio" class="form-check-input" name="search-option" value="keyword" checked (change)="plusSearch($event)">Mot clé
+            <input type="radio" class="form-check-input" name="search-option" value="more" (change)="plusSearch($event)">Recherche poussé
+        </div>
+        <div class="search-options container w-50 m-auto" *ngIf="!keysearch">
+            <div class="row mt-1">
+                <input type="text" class="form-control" formControlName="title" name="title" placeholder="Titre">
+            </div>
+            <div class="row mt-1">
+                <input type="text" class="form-control" formControlName="domain" name="domain" placeholder="Domaine">
+            </div>
+     
+            <div class="faculty row mt-1">
+                <select name="faculy" class="form-select" formControlName="faculty">
+                    <optgroup *ngFor="let group of faculties" [label]="group.label">
+                        <option *ngFor="let choice of group.values">
+                            {{ choice }}
+                        </option>
+                    </optgroup>       
+                </select>
+            </div>
+            <div class="type">
+                <span>Type: </span>
+                <input type="radio" class="form-check-input" formControlName="type" name="type" value="course" checked>cours
+                <input type="radio" class="form-check-input" formControlName="type" name="type" value="exam" checked>examen
+                <input type="radio" class="form-check-input" formControlName="type" name="type" value="td" checked>TD
+                <input type="radio" class="form-check-input" formControlName="type" name="type" value="tp" checked>TP
+            </div>
+        </div>
+    </form>
+</div>

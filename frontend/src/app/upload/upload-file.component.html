@@ -1,0 +1,42 @@
+<input type="file" class="file-input"
+       [accept]="requiredFileType"
+       (change)="onFileSelected($event)" [multiple]="multiple" #fileUpload hidden>
+
+<div class="file-upload container">
+  <div class="row mb-2 w-75 text-center m-auto" id="upload">
+    <span><i role="button" class="bi bi-cloud-arrow-up-fill " (click)="fileUpload.click()"></i></span>
+    <div class="col-6 m-auto m-2">
+      <a mat-mini-fab class="m-2 font-weight-bold" color="primary"
+        (click)="fileUpload.click()"  id="selectbutton" appUploadButton>
+        <i class="bi bi-paperclip"></i>
+        <span>Choisir des fichiers</span>
+      </a>
+    </div>
+    <div *ngIf="uploaded_files.length>0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-1">
+      <div *ngFor="let file of uploaded_files" class="">
+        <a href="" (click)="deleteFile()">
+            <i class="bi bi-x"></i>
+        </a>
+        <i class="bi bi-file-earmark-fill"></i>
+        <span>{{file.name}}</span>
+      </div>    
+    </div>
+    <div *ngIf="uploaded_files.length==0">
+      <div >
+          <i class="bi bi-file-earmark-fill"></i>
+          <span>Pas de fichiers selectionnés</span>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row m-auto">
+    <div class="col-6 col-lg-3 m-auto m-2">
+      <button (click)="onUpload()" id="uploadbutton"
+        class="btn btn-success">
+        Upload
+      </button>
+    </div>
+    
+  </div>
+</div>

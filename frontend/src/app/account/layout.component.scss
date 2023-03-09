@@ -1,0 +1,35 @@
+$primary-color:rgb(171, 104, 123);
+
+.row .choice{
+    border-color:$primary-color;
+}
+
+#image-auth{    
+    // background-image: url("../../assets/image/auth_4_3.jpg");
+    background-image: url("auth_3_4.jpg");
+    background: $primary-color;
+    opacity:0.5;
+    h2{
+        position:relative;
+        top:-50%;
+        font-size: 2.5em;
+        font-weight: bold;
+        font-style: oblique;
+
+    }
+
+}
+
+html,body{
+    height:100%;
+}
+
+.fill{
+    min-height:100%;
+    height:100%;
+}
+
+
+.title{
+    top:-50%;
+}

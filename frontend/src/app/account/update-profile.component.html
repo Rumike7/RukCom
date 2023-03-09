@@ -1,0 +1,17 @@
+<h2 class="profile-title">Profile Page</h2>
+
+<form>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="username" [(ngModel)]="user.username">
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email">
+  </div>
+
+  <button [disabled]="loading" class="btn btn-primary" type="submit" (click)="updateProfile()">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Mettre à jour
+  </button>
+</form>

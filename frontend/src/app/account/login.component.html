@@ -1,0 +1,26 @@
+<div class="text-danger font-weight-bold" *ngIf="error">
+    Les informations sont incorrectes, aucun compte n'y correspond.
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group m-1">
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" 
+            placeholder="Pseudo"/>
+        <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+            <div *ngIf="f['username'].errors['required']">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group m-1">
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" 
+        placeholder="Mot de passe"/>
+        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Se connecter
+        </button>
+        <a routerLink="/home" class="btn btn-link">Accueil</a>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+<div class="container m-auto ">
+    <div class="row mt-2 home">
+        <a role="button" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <span>Accueil</span>
+        </a>
+    </div>
+    <div class="row ">
+        <button class="btn btn-outline-danger my-4 w-25 mw-100 m-auto" (click)="init()">
+            Annuler
+        </button>
+    </div>
+    <div *ngFor="let fileProgress of filesProgress" >
+        <div *ngIf="fileProgress.file.name" class="row">
+            <div class="col-7 m-auto">
+                {{fileProgress.file.name}} 
+            </div>
+            <div class="col-4 m-auto">
+                <mat-progress-bar class="progress-bar" mode="determinate"
+                                  [value]="fileProgress.uploadProgress" *ngIf="fileProgress.uploadProgress">
+                </mat-progress-bar>
+            </div>
+            <div class="col-1 m-auto">
+                <i role="button" class="cancel-upload bi bi-bug text-danger" (click)="cancelUpload(fileProgress)" 
+                     *ngIf="fileProgress.error"></i>
+                <i role="button" class="cancel-upload bi bi-trash text-danger" (click)="cancelUpload(fileProgress)" 
+                     *ngIf="!fileProgress.error && fileProgress.uploadProgress && fileProgress.uploadProgress<100"></i>
+                <i role="button" class="cancel-upload bi bi-check2-circle text-success" (click)="cancelUpload(fileProgress)" 
+                     *ngIf="!fileProgress.error && fileProgress.uploadProgress && fileProgress.uploadProgress==100"></i>
+            </div>
+        </div>
+    </div>
+</div>

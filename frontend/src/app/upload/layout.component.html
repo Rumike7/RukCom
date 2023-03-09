@@ -1,0 +1,66 @@
+<div class="container m-4">
+    <div class="row home">
+        <a role="button" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <span>Accueil</span>
+        </a>
+    </div>
+
+    <div class="row">
+        <h2>
+            Salut,<span style="color:blue">{{user.username}}</span> 
+        </h2>
+        <p class="">
+            ce site est fait par les etudiants  et pour les étudiants.
+            Contribuez, en nous offrant un de vos precieux documents, en aidant toute la 
+            communauté à en apprendre toujours plus
+        </p>
+    </div>
+    <div class="row text-center">
+        <form [formGroup]="form">
+            <div class="form-group m-1 w-75 m-auto">
+                <input type="text" formControlName="faculty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['faculty'].errors }" 
+                    placeholder="Faculté"/>
+                <div *ngIf="f['faculty'].errors" class="invalid-feedback">
+                    <div *ngIf="f['faculty'].errors['required']">Faculty is required</div>
+                </div>
+            </div>
+            <div class="form-group mt-2 mb-2 w-75 m-auto">
+                <input type="domain" formControlName="domain" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['domain'].errors }" 
+                placeholder="Domaine"/>
+                <div *ngIf="submitted && f['domain'].errors" class="invalid-feedback">
+                    <div *ngIf="f['domain'].errors['required']">domain is required</div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-4 text-center">
+                    <h2>Pdf</h2>
+                    <div class="add-symbol">
+                        <a (click)="requiredFileType='.pdf'">
+                            <i class="bi bi-upload"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <h2>Images</h2>
+                    <div class="add-symbol">
+                        <a (click)="requiredFileType='image/*'">
+                            <i class="bi bi-upload"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <h2>Zip</h2>
+                    <div class="add-symbol">
+                        <a (click)="requiredFileType='.zip'">
+                            <i class="bi bi-upload"></i>
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <app-upload-file [requiredFileType]="requiredFileType"></app-upload-file>
+            </div>
+        </form>
+    </div>
+  </div>

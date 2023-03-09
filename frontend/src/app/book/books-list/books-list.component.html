@@ -1,0 +1,40 @@
+<app-nav></app-nav>
+<app-search-bar></app-search-bar>
+<div class="container mt-4">
+    <div class="row">
+        <div class="presentation">
+            <h2 class="welcome text-primary font-weight-bold text-center">
+                Bienvenue sur le project Books soutenu par la <span class="organisation-name">Cetasso</span>.
+            </h2>
+            <div class="description mb-">
+                Visitez plus de 100 cours,td,examen dans différents domaines allant de l'ingénierie à la littérature.
+                Joignez les centaines de gens volontaires qui sont prêtés à nous aider à nous former.
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-lg-4 mt-4 m-auto">
+        <div *ngFor="let book of books" class="col">
+            <h5>
+                <a (click)="toBook(book)" role="button">
+                    <img [src]="book.image_path" alt="">
+                    <!-- <img [src]="'assets/image/books/'+book.name+'.jpg'" alt=""> -->
+                    <div class="description">
+                        {{ book.filename }}<br>
+                        {{ book.domain }}<br>
+                        {{ book.type }}<br>
+                        <i class="bi bi-star-fill text-warning"></i>{{ book.liked }}<br>
+
+                    </div>
+                </a>
+            </h5>
+            <p *ngIf="book.description">
+                Description: {{ book.description }}
+            </p>
+        </div>
+        
+    
+        <p class="books-last">
+            Voir les derniers livres ajoutés
+        </p>
+    </div>
+</div>
