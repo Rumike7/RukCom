@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="m-auto text-center">Livres</h1>
+  <div id="unverified-books" class="row">
+      Les Livres non vérifiés
+      <div *ngIf="unverified_books.length>0" class="row">
+          <div *ngFor="let book of unverified_books" class="col-lg-4 col-6 mb-3">
+            <div *ngIf="!choosed">
+              <a (click)="toPreview(book)" class="text-center">
+                <button class="btn">Voir {{book.filename}}</button>
+              </a>
+              <div class="choose mb-2">
+                <button class="btn btn-success mx-1" (click)="accept(book)">Accepter</button>
+                <button class="btn btn-primary mx-1" (click)="reject(book)">Rejecter</button>
+              </div>
+            </div>
+            <div *ngIf="choosed">
+              <a (click)="toPreview(book)">
+                <button class="btn">Voir {{book.filename}}</button>
+              </a>
+              <div class="choose">
+                <button class="btn btn-success m-1">Déja décidé</button>
+              </div>
+            </div>
+        
+          </div>    
+        </div>
+  </div>
+
+</div>

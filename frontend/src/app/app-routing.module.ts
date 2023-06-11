@@ -9,19 +9,21 @@ import { BookComponent } from './book/book/book.component';
 import { ContactComponent } from './contact/contact.component';
 import { TestComponent } from './test/test.component';
 
+const defaultModule = () => import('./default/default.module').then(x => x.DefaultModule);
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const uploadModule = () => import('./upload/upload.module').then(x => x.UploadModule);
 const adminModule = () => import('./admin/admin.module').then(x => x.AdminModule);
+const sellerModule = () => import('./seller/seller.module').then(x => x.SellerModule);
+
 const routes: Routes=[
-  {path: 'contact', component: ContactComponent},
-  {path: 'preview', component: PreviewComponent},
   {path: 'test', component: TestComponent},
-  {path: 'home', component: BooksListComponent},
-  {path: 'books/:name/:id', component: BookComponent},
-  {path:'', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'default', loadChildren: defaultModule },
   {path: 'account', loadChildren: accountModule },
   {path: 'upload', loadChildren: uploadModule , canActivate: [AuthGuard]},
-  {path: 'admin', loadChildren: adminModule, canActivate: [AdminGuard]},
+  {path: 'admin', loadChildren: adminModule},
+  {path: 'seller', loadChildren: sellerModule},
+  {path: '', redirectTo: 'default', pathMatch:'full'},
+  {path: '**', component: TestComponent},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -26,7 +26,13 @@ export class AccountService {
 
     login(username:string, password:string) {
         return this.http.post<User>(`/api/auth/login`, { username, password })
-            .pipe(map(user => {
+            .pipe(map( (data:any) => {
+                // data  [
+                //     'access_token' => $token,
+                //     'token_type' => 'Bearer',
+                //     'user' => $user,
+                // ]
+                const user=data["user"];
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 this.saveAndEmit(user);
                 return user;

@@ -1,35 +1,14 @@
 $primary-color:rgb(171, 104, 123);
 
-.row .choice{
-    border-color:$primary-color;
-}
-
-#image-auth{    
-    // background-image: url("../../assets/image/auth_4_3.jpg");
-    background-image: url("auth_3_4.jpg");
-    background: $primary-color;
-    opacity:0.5;
-    h2{
-        position:relative;
-        top:-50%;
-        font-size: 2.5em;
-        font-weight: bold;
-        font-style: oblique;
-
-    }
-
-}
-
-html,body{
-    height:100%;
-}
-
-.fill{
-    min-height:100%;
-    height:100%;
+.container-fluid {
+  height: 100vh; /* Set container height to 100% of the viewport height */
 }
 
 
-.title{
-    top:-50%;
+.bg-image {
+  background-color:$primary-color;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px; /* Adjust the height as needed */
 }

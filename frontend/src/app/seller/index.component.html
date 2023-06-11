@@ -1,0 +1,33 @@
+<ng-template #sellerPage>
+  <div class="seller-page">
+    <h1>Welcome to our ecommerce platform</h1>
+    <h2>Become a seller and join our community</h2>
+    <p>As an ecommerce seller, you're always looking for ways to expand your reach and grow your business. Our platform offers you the tools and resources you need to succeed in today's competitive marketplace.</p>
+    <h3>Why choose us?</h3>
+    <ul>
+      <li><strong>Increased visibility:</strong> Our platform is designed to help sellers reach a wider audience, increasing the chances of making sales and growing your brand.</li>
+      <li><strong>User-friendly interface:</strong> Our platform is intuitive and easy to use, making it simple for you to upload products, manage orders, and communicate with customers.</li>
+      <li><strong>Marketing support:</strong> We offer a range of marketing tools and resources to help you promote your products and attract new customers.</li>
+      <li><strong>Dedicated support:</strong> Our team of experts is always available to answer your questions and provide you with the support you need to succeed.</li>
+    </ul>
+    <h3>How to get started</h3>
+    <p>Getting started on our platform is easy. Simply create an account, upload your products, and start selling. It's that simple!</p>
+    <button class="btn btn-primary" (click)="loginSeller()">Sign up now</button>
+  </div>
+</ng-template>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <app-nav></app-nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <ng-container *ngTemplateOutlet="sellerPage"></ng-container>
+    </div>
+    <div class="col-md-4">
+      <!-- <app-sidebar></app-sidebar> -->
+    </div>
+  </div>
+</div>

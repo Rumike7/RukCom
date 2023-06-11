@@ -4,10 +4,11 @@ export interface User{
         password:string;
         password_confirmation?:string;
         username:string;
-        firstName: string;    
-        lastName: string;    
+        firstName: string;
+        lastName: string;
         phone: number;
         token?:string;
         admin?:boolean;
         uuid?:string;
+        seller?:boolean;
 }

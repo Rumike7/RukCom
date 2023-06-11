@@ -5,7 +5,7 @@
 
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-
+// @import "~@fortawesome/fontawesome-free/scss/regular";
 
 * {
     font-family: Roboto, Helvetica, sans-serif;
@@ -24,17 +24,10 @@ html,body{
     height:100%;
 }
 
-// html{
-//     font-size: 16px;
-//     font-weight:400;
-//     line-weight:1.5;
-// }
 
-// @media (max-width: 768px){
-//     html{
-//         font-size: 24px;
-//     }
-// }
+.filled-gold {
+  color: gold;
+}
 
 .home{
     font-size:1.25em;

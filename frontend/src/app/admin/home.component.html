@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" 
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
     </button>
@@ -7,7 +7,7 @@
     routerLinkActive="active" ariaCurrentWhenActive="page">Cetasso Books</a>
 </nav>
 
-  
+
 <div class="offcanvas offcanvas-start sidebar-nav bg-dark text-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title text-muted uppercase" id="offcanvasExampleLabel">Cetasso Books</h5>
@@ -49,5 +49,14 @@
 
 <main class="mt-5 pt-3">
     <router-outlet></router-outlet>
-</main>
+</main> -->
 
+<div class="wrapper">
+  <app-topbar></app-topbar>
+  <app-sidebar></app-sidebar>
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+  <app-asidebar></app-asidebar>
+  <app-footer></app-footer>
+</div>

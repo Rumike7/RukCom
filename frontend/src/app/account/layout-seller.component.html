@@ -1,0 +1,28 @@
+<div class="container-fluid m-0 p-0 fill">
+  <div class="row m-0 p-0 text-center h-100">
+      <div class="col-md-6 m-auto ">
+          <div class="container p-4">
+              <div class="row text-center">
+                  <div class="col-6 choice border-danger" [ngClass]="{'border-bottom':isLogin()}">
+                      <a routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page">Connexion</a>
+                  </div>
+                  <div class="col-6 choice border-danger" [ngClass]="{'border-bottom':!isLogin()}">
+                      <a routerLink="register" routerLinkActive="active" ariaCurrentWhenActive="page">Inscription</a>
+                  </div>
+              </div>
+              <div class="row" >
+                  <div class="card">
+                      <div class="card-body">
+                          <router-outlet></router-outlet>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div id="image-auth" class="col-0 col-md-6 p-0 m-0 h-100" *ngIf="md()">
+          <img class="opacity-50 w-100 h-100 p-0  top-0 left-0" src="../../assets/image/auth_3_4.jpg" alt="">
+          <h2 class=" title">RukCom</h2>
+      </div>
+  </div>
+</div>
+

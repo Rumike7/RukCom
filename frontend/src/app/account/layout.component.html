@@ -1,4 +1,4 @@
-<div class="container-fluid m-0 p-0 fill">
+<div class="container-fluid m-0 p-0 ">
     <div class="row m-0 p-0 text-center h-100">
         <div class="col-md-6 m-auto ">
             <div class="container p-4">
@@ -19,9 +19,15 @@
                 </div>
             </div>
         </div>
-        <div id="image-auth" class="col-0 col-md-6 p-0 m-0 h-100" *ngIf="md()">
-            <img class="opacity-50 w-100 h-100 p-0  top-0 left-0" src="../../assets/image/auth_3_4.jpg" alt="">
-            <h2 class=" title">RukCom</h2>
+        <div class="col-0 col-md-6 m-auto" *ngIf="md()">
+          <div class="container-fluid">
+            <div class="row text-center align-items-center bg-image h-100" style="background-image: url('../../assets/image/auth_3_4.jpg');">
+              <div class="col" >
+                  <h1>RukCom</h1>
+              </div>
+            </div>
+          </div>
+
         </div>
     </div>
 </div>

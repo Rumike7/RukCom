@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-7">
+    <div class="container" *ngIf="product">
+      <div class="row">
+        <div class="col">      
+          <img class="product-image" src="api/{{product.imgpath}}" alt="Product Image">
+        </div>
+        <div class="col">
+          <h1 class="product-name">{{product.name}}</h1>
+          <p class="product-description">{{product.description}}</p>
+          <p class="product-price">{{product.price}} MAD</p>
+          <p class="product-discount" *ngIf="product.discount">({{product.discount}}% off)</p>
+          <p class="product-quantity">Available Quantity: {{product.quantity}}</p>
+          <div class="rating">
+            <div *ngIf="product.rating;else noRating">
+              <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
+              <span>({{product.numRatings}})</span>
+            </div>
+            <ng-template #noRating>
+              <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
+              <span>({{0}})</span>
+            </ng-template>
+          </div>
+          <p class="">Brand:{{ product.brand }}</p>
+          <div class="row">
+              <button class="w-100 col-12" (click)="addToCard()" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus-circle" ></i> Add to card
+              </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <h5 class="product-about">About the Product</h5>
+    <p>{{product.about}}</p>
+    <!-- also characterisc -->
+  </div>
+</div>

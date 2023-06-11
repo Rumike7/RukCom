@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" 
+        data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
+    </button>
+    <a class="navbar-brand  m-auto" routerLink="/home"
+    routerLinkActive="active" ariaCurrentWhenActive="page">Cetasso Books</a>
+</nav>
+
+  
+<div class="offcanvas offcanvas-start sidebar-nav bg-dark text-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-muted uppercase" id="offcanvasExampleLabel">Cetasso Books</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body overflow-hidden">
+      <nav class="navbar-dark">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item text-light mt-4">
+                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                <a class="text-light" routerLink="team-member" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+            <li class="nav-item text-light mt-4">
+                <span class="me-2"><i class="bi bi-chat"></i></span>
+                <a class="text-light" routerLink="team-member" routerLinkActive="active" ariaCurrentWhenActive="page">Equipe</a>
+            <li class="nav-item text-light mt-4">
+                <span class="me-2"><i class="bi bi-people"></i></span>
+                <a class="text-light" routerLink="message" routerLinkActive="active" ariaCurrentWhenActive="page">Messages</a></li>
+            <li class="nav-item mt-4 text-light" >
+                <span class="me-2"><i class="bi bi-book"></i></span>
+                <a class="text-light" routerLink="books" routerLinkActive="active" ariaCurrentWhenActive="page">Livres</a></li>
+          </ul>
+          <ul class="navbar-nav mb-auto">
+            <li class="nav-item">
+                <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="bi bi-box-arrow-in-left" class="text-light"></i>
+                </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto position-absolute bottom-0 end-25">
+            <li class="nav-item">
+                <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <i class="bi bi-box-arrow-in-left text-light"></i>
+                </a>
+            </li>
+          </ul>
+      </nav>
+    </div>
+</div>
+
+<main class="mt-5 pt-3">
+    <router-outlet></router-outlet>
+</main>
+

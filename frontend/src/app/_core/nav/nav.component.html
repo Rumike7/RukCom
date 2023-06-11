@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
-          <img src="./assets/image/logo.png" height="75%">
+          <img src="./assets/image/logo.png" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,63 +9,49 @@
         </button>
         <div>
         </div>
-        <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mr-auto">
+              <input class="home-search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" #searchProductInput>
+              <button class="btn btn-outline-success my-2 my-sm-0" type=button (click)="search(searchProductInput.value)">Search</button>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item" *ngIf="user;else noUserConnnect">
+                <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <i class="fa fa-user"></i> Profile
+                </a>
+              </li>
+              <ng-template #noUserConnnect>
+                <li class="nav-item pr-1 py-1">
+                  <button class="btn btn-outline-primary" aria-current="page" routerLink="/account/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page">
+                      <span>Connexion</span>
+                  </button>
+                </li>
+              </ng-template>
+              <li class="nav-item" *ngIf="user;else noUserRegister">
+                <a class="nav-link active" (click)="logout()">
+                  <i class="fa fa-sign-out"></i> Logout
+                </a>
+              </li>
+              <ng-template #noUserRegister>
+                <li class="nav-item pr-1 py-1">
+                  <button class="btn btn-primary" aria-current="page" routerLink="/account/auth/register" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <span>Inscription</span>
+                  </button>
+                </li>
+              </ng-template>
+              <li class="nav-item ">
+                <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <i class="fa fa-question-circle"></i> Help
+                </a>
 
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Accueil</span>
-                    </a>
-                </li>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <i class="fa fa-shopping-cart"></i> Cart
+                </a>
+              </li>
+            </ul>
 
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Chercher un livre</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/upload" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Deposer un livre</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>A propos</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Nous Contacter</span>
-                    </a>
-                </li>
-
-            </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 " *ngIf="user">
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <!-- <i class="bi bi-upload"></i> -->
-                        <span>Mon Profil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="/account/logout" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <!-- <i class="bi bi-person"></i> -->
-                        <span>Déconnexion</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex" *ngIf="!user">
-                <li class="nav-item mr-1 my-1">
-                    <button class="btn btn-outline-primary" aria-current="page" routerLink="/account/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Connexion</span>
-                    </button>
-                </li>
-                <li class="nav-item mr-1 my-1">
-                    <button class="btn btn-primary" aria-current="page" routerLink="/account/auth/register" routerLinkActive="active" ariaCurrentWhenActive="page">
-                        <span>Inscription</span>
-                    </button>
-                </li>
-            </ul>
         </div>
      </div>
 </nav>

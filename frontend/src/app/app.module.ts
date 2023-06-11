@@ -26,7 +26,6 @@ import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     BooksListComponent,
     BookComponent,
     SearchBarComponent,
@@ -44,7 +43,8 @@ import { TestComponent } from './test/test.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NavComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

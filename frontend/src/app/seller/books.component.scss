@@ -1,0 +1,9 @@
+.container::before{
+    width:800px;
+}
+
+@media(max-width:767px){
+    .container::before{
+        width:20px;
+    }
+}
