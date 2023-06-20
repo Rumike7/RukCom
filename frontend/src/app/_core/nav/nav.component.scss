@@ -6,3 +6,8 @@
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { .home-search { width: 800px; } }
+
+.navbar{
+  z-index: 1034;
+  border-bottom: 1px solid #dee2e6;
+}

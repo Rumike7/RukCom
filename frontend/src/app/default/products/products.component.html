@@ -4,10 +4,9 @@
   </div>
   <div class="col-md-9">
     <section class="content">
-      <!-- Default box -->
       <div class="card card-solid">
         <div class="card-body pb-0">
-          <div class="card-deck">
+          <div class="row">
             <ng-container *ngFor="let product of products;let i= index">
               <div class="card col-4 bg-light" *ngIf="i>=page*numberPerPage && i<(page+1)*numberPerPage"  >
                 <div class="card-body pt-0" >
@@ -17,19 +16,18 @@
             </ng-container>
           </div>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
           <nav aria-label="Contacts Page Navigation">
             <ul class="pagination justify-content-center m-0">
               <li class="page-item">
-                <a class="page-link" (click)="prec()" aria-label="Previous">
+                <a class="page-link" (click)="precPage()" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
-              <li class="page-item" *ngFor="let pageFromOne of pagesFromOne"><a class="page-link" (click)="selectPage(pageFromOne-1)">{{pageFromOne}}</a></li>
+              <li class="page-item" *ngFor="let pageFromOne of pagesFromOne"><a class="page-link" (click)="page=pageFromOne-1">{{pageFromOne}}</a></li>
               <li class="page-item">
-                <a class="page-link" (click)="next()" aria-label="Next">
+                <a class="page-link" (click)="nextPage()" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                   <span class="sr-only">Next</span>
                 </a>
@@ -39,7 +37,6 @@
         </div>
         <!-- /.card-footer -->
       </div>
-      <!-- /.card -->
     </section>
   </div>
 </div>

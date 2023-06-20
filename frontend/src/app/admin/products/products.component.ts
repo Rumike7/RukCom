@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Product, categories } from '@app/_interfaces/product.interface';
+import { Product} from '@app/_interfaces/product.interface';
 import { ProductService } from '@app/_services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '@app/_services/alert.service';
+import { AdminEnumsService } from '@app/_services/admin-enums.service';
 // import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-products',
@@ -18,13 +19,13 @@ export class ProductsComponent implements OnInit {
   selectedProductId!: number;
   selectedProduct!: Product;
   modalVisible = true;
-  categories = categories;
 
 
   constructor(
     private productService: ProductService,
     private fb: FormBuilder,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public enums: AdminEnumsService,
   ) { }
   ngOnInit(): void {
     this.productService.allProducts.subscribe((res:Product[])=>{

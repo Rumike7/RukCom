@@ -38,7 +38,7 @@ export class ProductService {
   getWithKeys(keys: string){
     const url = `${this.apiUrl}/search/${keys}`;
     return this.http.get(url).subscribe(res=>{
-      var r:any=res;
+      var r:any=res;//["products"=>products]
       console.log("getWithKeys");
       console.log(r);
       this.fildtredProducts.next(r.products);

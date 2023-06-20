@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminEnumController;
+use App\Models\AdminEnum;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -23,6 +25,7 @@ use Illuminate\Support\Facades\Storage;
 
 Route::apiResource('users', UserController::class);
 Route::apiResource('products', ProductController::class);
+Route::apiResource('adminenums', AdminEnumController::class);
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('/search', 'index');
     Route::get('/search/{keys}', 'search');

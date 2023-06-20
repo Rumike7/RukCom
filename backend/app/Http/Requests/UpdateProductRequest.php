@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\AdminEnum;
+use Illuminate\Validation\Rule;
+
 
 class UpdateProductRequest extends FormRequest
 {
@@ -23,6 +26,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
+        $enum=AdminEnum::find(1);
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -34,8 +38,8 @@ class UpdateProductRequest extends FormRequest
             'about' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'imgpath' => 'nullable|string|max:255',
-            'category' => 'required|in:mode,electronics,beauty',
-            'brand' => 'required|in:mode,electronics,beauty',
+            'category' => ['required',Rule::in($enum->categories)],
+            'brand' => ['required',Rule::in($enum->brands)],
             'is_featured' => 'accepted',
             'is_published' => 'accepted',
         ];

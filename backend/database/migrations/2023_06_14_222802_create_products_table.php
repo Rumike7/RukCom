@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\AdminEnum;
 
 return new class extends Migration
 {
@@ -20,8 +21,8 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->string('image')->nullable();
             $table->string('imgpath')->nullable();
-            $table->enum('category', ['mode', 'electronics','beauty'])->default('mode');
-            $table->enum('brand', ['mode', 'electronics','beauty'])->default('mode');
+            $table->string('category')->default('');
+            $table->string('brand')->default('');
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_published')->default(true);
             $table->timestamps();

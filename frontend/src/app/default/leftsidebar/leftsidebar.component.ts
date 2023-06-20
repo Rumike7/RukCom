@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, categories, categoriesUnion } from '@app/_interfaces/product.interface';
+import { Product} from '@app/_interfaces/product.interface';
+import { AdminEnumsService } from '@app/_services/admin-enums.service';
 import { ProductService } from '@app/_services/product.service';
 
 @Component({
@@ -8,19 +9,20 @@ import { ProductService } from '@app/_services/product.service';
   styleUrls: ['./leftsidebar.component.scss']
 })
 export class LeftsidebarComponent implements OnInit {
-  categories=categories;
   catCount:number[]=[];
   brCount:number[]=[];
 
   products: Product[]=[];
   constructor(
     private productService: ProductService,
+    public enums: AdminEnumsService,
+
   ) { }
 
   ngOnInit(): void {
     this.productService.allProducts.subscribe((res:Product[])=>{
-      this.catCount=this.countProductsByCategory(res,this.categories);
-      this.brCount=this.countProductsByBrand(res,this.categories);
+      this.catCount=this.countProductsByCategory(res,this.enums.categories);
+      this.brCount=this.countProductsByBrand(res,this.enums.brands);
     });
     this.productService.fildtredProducts.subscribe((res:Product[])=>{
       this.products=res;
@@ -28,8 +30,8 @@ export class LeftsidebarComponent implements OnInit {
     });
   }
 
-  countProductsByCategory(products: Product[], categories: readonly categoriesUnion[]): number[] {
-    const countArray: number[] = new Array(categories.length).fill(0);
+  countProductsByCategory(products: Product[], categories: readonly string[]): number[] {
+    const countArray: number[] = new Array(this.enums.categories.length).fill(0);
   
     for (const product of products) {
       if(!product.category)continue;
@@ -41,8 +43,8 @@ export class LeftsidebarComponent implements OnInit {
   
     return countArray;
   }
-  countProductsByBrand(products: Product[], brands: readonly categoriesUnion[]): number[] {
-    const countArray: number[] = new Array(categories.length).fill(0);
+  countProductsByBrand(products: Product[], brands: readonly string[]): number[] {
+    const countArray: number[] = new Array(this.enums.brands.length).fill(0);
   
     for (const product of products) {
       if(!product.brand)continue;

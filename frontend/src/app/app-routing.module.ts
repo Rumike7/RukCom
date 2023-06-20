@@ -20,7 +20,7 @@ const routes: Routes=[
   {path: 'default', loadChildren: defaultModule },
   {path: 'account', loadChildren: accountModule },
   {path: 'upload', loadChildren: uploadModule , canActivate: [AuthGuard]},
-  {path: 'admin', loadChildren: adminModule},
+  {path: 'admin', loadChildren: adminModule, canActivate: [AdminGuard]},
   {path: 'seller', loadChildren: sellerModule},
   {path: '', redirectTo: 'default', pathMatch:'full'},
   {path: '**', component: TestComponent},

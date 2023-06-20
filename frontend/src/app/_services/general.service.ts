@@ -20,4 +20,16 @@ export class GeneralService {
       return 'far fa-star';
     }
   }
+  shuffle(a:any[]) {
+    a.sort(() => Math.random() - 0.5);
+    // var j, x, i;
+    // for (i = a.length - 1; i > 0; i--) {
+    //     j = Math.round(Math.random() * (i + 1));
+    //     x = a[i];
+    //     a[i] = a[j];
+    //     a[j] = x;
+    // }
+    return a;
+}
+
 }

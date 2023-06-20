@@ -1,41 +1,109 @@
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-7">
-    <div class="container" *ngIf="product">
-      <div class="row">
-        <div class="col">      
-          <img class="product-image" src="api/{{product.imgpath}}" alt="Product Image">
-        </div>
-        <div class="col">
-          <h1 class="product-name">{{product.name}}</h1>
-          <p class="product-description">{{product.description}}</p>
-          <p class="product-price">{{product.price}} MAD</p>
-          <p class="product-discount" *ngIf="product.discount">({{product.discount}}% off)</p>
-          <p class="product-quantity">Available Quantity: {{product.quantity}}</p>
-          <div class="rating">
-            <div *ngIf="product.rating;else noRating">
-              <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
-              <span>({{product.numRatings}})</span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+      <div class="container" *ngIf="product">
+        <div class="row">
+          <div class="col">
+            <img class="product-image" src="api/{{product.imgpath}}" alt="Product Image">
+          </div>
+          <div class="col">
+            <h1 class="product-name">{{product.name}}</h1>
+            <p class="product-description">{{product.description}}</p>
+            <p class="product-price">{{ product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</p>
+            <p class="product-discount" *ngIf="product.discount">({{product.discount}}% off)</p>
+            <p class="product-quantity">Available Quantity: {{product.quantity}}</p>
+            <div class="rating">
+              <div *ngIf="product.rating;else noRating">
+                <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
+                <span>({{product.numRatings}})</span>
+              </div>
+              <ng-template #noRating>
+                <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
+                <span>({{0}})</span>
+              </ng-template>
             </div>
-            <ng-template #noRating>
-              <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
-              <span>({{0}})</span>
-            </ng-template>
+            <p class="">Brand:{{ product.brand }}</p>
+            <div class="row justify-content-center">
+              <div *ngIf="!isInCart();else InCart" class="col-10">
+                <button (click)="addToCard()" class="w-100 btn btn-sm btn-primary">
+                  <i class="fas fa-plus-circle" ></i> Add to card
+                </button>
+              </div>
+              <ng-template #InCart>
+                <div class="col-10">
+                  <button (click)="RemoveFromCard()" class="w-100 btn btn-sm btn-primary col-12">
+                    <i class="fas fa-minus-circle" ></i> Remove from card
+                  </button>
+                  <div class="w-100">
+                    <div class="row justify-content-center">
+                      <button type="button" class="btn rounded-circle btn-secondary col-1 m-1" (click)="decreaseQuantity()">-</button>
+                      <input type="number" class="form-control col-5 m-1" [(ngModel)]="quantity" (change)="add();">
+                      <button type="button" class="btn rounded-circle btn-secondary col-1 m-1" (click)="increaseQuantity()">+</button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+  
+            </div>
+  
           </div>
-          <p class="">Brand:{{ product.brand }}</p>
-          <div class="row">
-              <button class="w-100 col-12" (click)="addToCard()" class="btn btn-sm btn-primary">
-                <i class="fas fa-plus-circle" ></i> Add to card
-              </button>
-          </div>
-
         </div>
       </div>
     </div>
+    <div class="col-md-3">
+      <h5 class="product-about">About the Product</h5>
+      <p>{{product.about}}</p>
+      <!-- also characterisc -->
+    </div>
   </div>
-  <div class="col-md-3">
-    <h5 class="product-about">About the Product</h5>
-    <p>{{product.about}}</p>
-    <!-- also characterisc -->
+  <hr/>
+  <div class="h-50" style="visibility:hidden">
+    Space between products and recommend ones
   </div>
+  <hr/>
+  <h4>Recommended Products</h4>
+  <div class="row">
+    <div class="card card-solid">
+      <div class="card-body pb-0">
+        <div class="card-deck">
+          <ng-container *ngFor="let product of products;let i= index">
+            <div class="card col-4 bg-light" (click)="getProduct(product.id)" routerLinkActive="active" ariaCurrentWhenActive="page">
+              <div class="card-body pt-0" >
+                <div class="row">
+                  <div class="col-7">
+                    <h4>{{ product.name }}</h4>
+                    <p class="">{{ product.description }}</p>
+                    <hr>
+                  </div>
+                  <div class="col-5 text-center">
+                    <img src="/api/{{product.imgpath }}" alt="{{ product.name }}" class="img-fluid">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="rating">
+                      <div *ngIf="product.rating;else noRating">
+                        <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
+                        <span>({{product.numRatings}})</span>
+                      </div>
+                      <ng-template #noRating>
+                        <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
+                        <span>({{0}})</span>
+                      </ng-template>
+                    </div>
+                    <div class="col-12">
+                      <div class="price">
+                          <span class="lead font-weight-bold">{{ product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>

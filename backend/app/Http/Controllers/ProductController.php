@@ -7,6 +7,8 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\AdminEnum;
+
 
 class ProductController extends Controller
 {

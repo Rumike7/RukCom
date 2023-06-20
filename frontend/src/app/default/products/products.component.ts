@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  prec(){
+  precPage(){
     if(this.page>0)this.page--;
   }
 
@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
     this.page=page;
   }
 
-  next(){
+  nextPage(){
     if(this.page<this.numberOfPage-1)this.page++;
   }
 

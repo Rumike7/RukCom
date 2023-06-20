@@ -60,6 +60,10 @@ export class AccountService {
             return x;
       }));;
     }
+    admin():boolean{
+      if(!this.userSubject.value.admin)return false;
+      return this.userSubject.value.admin;
+    }
 
     getAll() {
         return this.http.get<User[]>(`/api/users`);

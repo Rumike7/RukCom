@@ -1,5 +1,9 @@
 <!-- Topbar -->
-<app-nav></app-nav>
-<div class="container-fluid">
-  <router-outlet></router-outlet>
-</div>
+
+
+  <app-nav (cartVisbilityChanged)="handleVisibilityCartChange($event)"></app-nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  <app-cart (cartVisbilityChanged)="handleVisibilityCartChange($event)"></app-cart>
+  <a id="fake-cart-item" class="nav-link" style="visibility: hidden;" data-widget="control-sidebar" data-slide="true" href="#"><i class="fas fa-th-large"></i></a>

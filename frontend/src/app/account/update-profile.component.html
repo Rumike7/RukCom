@@ -1,17 +1,48 @@
-<h2 class="profile-title">Profile Page</h2>
 
-<form>
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="username" [(ngModel)]="user.username">
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="user.email">
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>Edit User Profile</h1>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="username"  [(ngModel)]="user.username">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" value="+1 123-456-7890">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" value="123 Main St, Anytown, USA">
+            </div>
+            <div class="mb-3">
+              <label for="dob" class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" id="dob" value="1990-01-01">
+            </div>
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-control" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
 
-  <button [disabled]="loading" class="btn btn-primary" type="submit" (click)="updateProfile()">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-    Mettre à jour
-  </button>
-</form>
+            <button [disabled]="loading" class="btn btn-primary" type="submit" (click)="updateProfile()">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Mettre à jour
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

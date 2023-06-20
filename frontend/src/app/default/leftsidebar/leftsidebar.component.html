@@ -10,10 +10,10 @@
   </div>
   <div class="card-body p-0">
     <ul class="nav nav-pills flex-column">
-      <li *ngFor="let category of categories; let i = index" class="nav-item" [ngClass]="{'active':i === 0}">
+      <li *ngFor="let category of enums.categories; let i = index" class="nav-item" [ngClass]="{'active':i === 0}">
         <a (click)="filterByCategory(category)" class="nav-link">
           {{category}}
-          <span *ngIf="catCount[categories.indexOf(category)]> 0" class="badge bg-primary float-right">{{catCount[categories.indexOf(category)]}}</span>
+          <span *ngIf="catCount[enums.categories.indexOf(category)]> 0" class="badge bg-primary float-right">{{catCount[enums.categories.indexOf(category)]}}</span>
         </a>
       </li>
     </ul>
@@ -24,7 +24,7 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Brands</h3>
-    
+
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
       </button>
@@ -32,10 +32,10 @@
   </div>
   <div class="card-body p-0">
     <ul class="nav nav-pills flex-column">
-      <li *ngFor="let brand of categories; let i = index" class="nav-item" [class.active]="i === 0">
+      <li *ngFor="let brand of enums.brands; let i = index" class="nav-item" [class.active]="i === 0">
         <a (click)="filterByBrand(brand)" class="nav-link">
           {{brand}}
-          <span *ngIf="brCount[categories.indexOf(brand)]> 0" class="badge bg-primary float-right">{{brCount[categories.indexOf(brand)]}}</span>
+          <span *ngIf="brCount[enums.brands.indexOf(brand)]> 0" class="badge bg-primary float-right">{{brCount[enums.brands.indexOf(brand)]}}</span>
         </a>
       </li>
     </ul>

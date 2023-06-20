@@ -68,7 +68,7 @@
               <td>{{p.rating}}</td>
               <td>{{p.is_featured}}</td>
               <td>{{p.is_published}}</td>
-              <td>{{p.about}}</td>
+              <td>{{p.about|slice:0:20}}</td>
               <td>
                 <div class="btn-group">
                   <button (click)="selectForDelete(p.id)" data-toggle="modal" data-target="#DeleteModal" type="button" class="btn btn-default btn-sm"><i class="fas fa-trash"></i></button>
@@ -167,7 +167,7 @@
               <label for="type">Category</label>
               <select class="form-control" id="category" formControlName="category">
                 <option value="" disabled selected>Select product category</option>
-                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                <option *ngFor="let category of enums.categories" [value]="category">{{ category }}</option>
               </select>
               <div *ngIf="productForm.get('category')!.invalid && productForm.get('category')!.touched" class="text-danger">Product type is required</div>
             </div>
@@ -186,7 +186,7 @@
               <label for="type">Brand</label>
               <select class="form-control" id="brand" formControlName="brand">
                 <option value="" disabled selected>Select product brand</option>
-                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                <option *ngFor="let brand of enums.brands" [value]="brand">{{ brand }}</option>
               </select>
               <div *ngIf="productForm.get('brand')!.invalid && productForm.get('brand')!.touched" class="text-danger">Product type is required</div>
             </div>
@@ -265,7 +265,7 @@
             <div class="form-group">
               <label for="category">Category</label>
               <select class="form-control" id="ucategory" formControlName="category">
-                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                <option *ngFor="let category of enums.categories" [value]="category">{{ category }}</option>
               </select>
               <div *ngIf="productForm.get('category')!.invalid && productForm.get('category')!.touched" class="text-danger">Product type is required</div>
             </div>
@@ -284,7 +284,7 @@
             <div class="form-group">
               <label for="type">Brand</label>
               <select class="form-control" id="ubrand" formControlName="brand">
-                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                <option *ngFor="let brand of enums.brands" [value]="brand">{{ brand }}</option>
               </select>
               <div *ngIf="productForm.get('brand')!.invalid && productForm.get('brand')!.touched" class="text-danger">Product type is required</div>
             </div>

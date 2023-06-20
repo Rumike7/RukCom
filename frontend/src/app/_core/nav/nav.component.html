@@ -40,13 +40,13 @@
                 </li>
               </ng-template>
               <li class="nav-item ">
-                <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <a class="nav-link active" routerLink="/default/help" routerLinkActive="active" ariaCurrentWhenActive="page">
                   <i class="fa fa-question-circle"></i> Help
                 </a>
 
               </li>
               <li class="nav-item ">
-                <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <a class="nav-link active" (click)="changeVisibilityCart()">
                   <i class="fa fa-shopping-cart"></i> Cart
                 </a>
               </li>
@@ -55,5 +55,4 @@
         </div>
      </div>
 </nav>
-
 

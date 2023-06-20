@@ -1,3 +1,5 @@
+import { AdminEnumsService } from "@app/_services/admin-enums.service";
+
 export interface Product {
   id: number;
   name: string;
@@ -11,15 +13,19 @@ export interface Product {
   about?: string;
   image?: any;
   imgpath?: string;
-  category?: categoriesUnion;
-  brand?: categoriesUnion;
+  category?: string;
+  brand?: string;
   is_featured?: boolean;
   is_published?: boolean;
   created_at?: string;
   updated_at?: string;
 }
 
+export interface CartItem {
+  product: Product,
+  quantity: number
+}
 
-export const categories = ['mode', 'electronics', 'beauty'] as const;
-export type categoriesUnion = typeof categories[number];
- 
+
+
+
