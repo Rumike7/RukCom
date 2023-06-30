@@ -24,7 +24,17 @@
     ],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "crypto": ["node_modules/crypto-browserify"], 
+      "util": ["node_modules/util"], 
+      "os": ["node_modules/os-browserify"], 
+      "tty": ["node_modules/tty-browserify"], 
+      "http": ["node_modules/stream-http"], 
+      "https": ["node_modules/https-browserify"],
+      "assert": ["node_modules/assert"],
+      "stream": ["node_modules/stream-browserify"], 
+      "url": ["node_modules/url"], 
+      "zlib": ["node_modules/browserify-zlib"],
     }
   },
   "angularCompilerOptions": {

@@ -11,4 +11,24 @@ export interface User{
         admin?:boolean;
         uuid?:string;
         seller?:boolean;
+        shipping_address_id?: number;
+        payment_method_id?: number;
 }
+
+export interface PaymentMethod {
+  creditCardNumber: string;
+  expirationDate: Date;
+  cvv: string;
+  billingAddress: string;
+}
+export interface ShippingAddress {
+  firstName: string;
+  lastName: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  phoneNumber: string;
+}
+

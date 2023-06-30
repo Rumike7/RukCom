@@ -20,9 +20,13 @@ export class LeftsidebarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.productService.allProducts.subscribe((res:Product[])=>{
+    console.log("LEFSIDEBAR");
+    this.productService.gets().subscribe((res:Product[])=>{
+      console.log("LEFSIDEBAR2");
       this.catCount=this.countProductsByCategory(res,this.enums.categories);
       this.brCount=this.countProductsByBrand(res,this.enums.brands);
+      console.log(this.enums.brands);
+      console.log(this.brCount);
     });
     this.productService.fildtredProducts.subscribe((res:Product[])=>{
       this.products=res;

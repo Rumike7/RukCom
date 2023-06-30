@@ -10,19 +10,19 @@ export class AdminEnumsService {
   private apiUrl = '/api/adminenums';
   brands: string[]=[];
   categories: string[]=[];
-   
+
   constructor(
     private http: HttpClient,
     private alertService: AlertService,
   ) {
-    this.get().subscribe((data:any) => {
-      console.log("GET adminEnumsService");
-      console.log({data});
-      if(data.brands)this.brands=data.brands;
-      if(data.categories)this.categories=data.categories ;      
+    this.get().subscribe((enums:any) => {
+      console.log({enums});
+      if(enums.brands)this.brands=enums.brands;
+      if(enums.categories)this.categories=enums.categories ;
     })
   }
   get(){
+    // Only the first id object has value
     const url = `${this.apiUrl}/${1}`;
     return this.http.get<any>(url);
   }
@@ -32,7 +32,7 @@ export class AdminEnumsService {
     //1 categories
     return this.http.put<any>(url, {dataarray}).subscribe({
       next: (res) => {
-         console.log(res);          
+         console.log(res);
       },
       error: error => {
           this.alertService.error(error);

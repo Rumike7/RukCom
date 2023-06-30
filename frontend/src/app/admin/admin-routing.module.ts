@@ -6,12 +6,14 @@ import { HomeComponent } from './home.component';
 import { MessagesComponent } from './messages.component';
 import { TeamMemberComponent } from './team-member.component';
 import { ProductsComponent } from './products/products.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent,
         children: [
             { path: 'products', component: ProductsComponent },
+            {path: 'orders', component: OrdersComponent},
             { path: 'books', component: BooksComponent },
             { path: 'messages', component: MessagesComponent },
             { path: 'team', component: TeamMemberComponent },

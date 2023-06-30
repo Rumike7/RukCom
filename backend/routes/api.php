@@ -6,9 +6,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminEnumController;
-use App\Models\AdminEnum;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderByUserController;
+use App\Http\Controllers\RatingController;
+use App\Models\ShippingAddress;
+use App\Models\PaymentMethods;
 use Illuminate\Support\Facades\Storage;
-
+use OpenAI\Laravel\Facades\OpenAI;
+use GuzzleHttp\Client;
+use App\Models\Rating;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +32,33 @@ use Illuminate\Support\Facades\Storage;
 Route::apiResource('users', UserController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('adminenums', AdminEnumController::class);
+Route::apiResource('orders', OrderController::class);
+Route::apiResource('ratings', RatingController::class);
+Route::apiResource('{userId}/orders', OrderByUserController::class);
+Route::get('/payment/{id}',  function ($id){return PaymentMethods::find($id);});
+Route::get('/shipping/{id}', function ($id){return ShippingAddress::find($id);});
+Route::get('rated/{userId}/{productId}', function ($userId,$productId){
+    $rating=Rating::where('user_id',$userId)
+        ->where('product_id',$productId)->first();
+    if(!$rating)return -1;
+    return $rating->id;
+});
+Route::get('ratings/products/{productId}', [ProductController::class,'setRatings']); 
+Route::get('ratings/orders/{userId}/{orderId}', [OrderByUserController::class,'setRatings']);
+
+Route::post('/chat', function (Request $request){
+    $prompt=$request["prompt"];
+    $client=new Client(['base_uri'=>'https://www.botlibre.com']);
+    $res=$client->post('rest/json/chat',[
+        'headers' => ['Content-Type' => 'application/json'],
+        'body'=>'{
+            "application":"4420406921881890074",
+            "instance":"165",
+            "message":"'.$prompt.'"
+        }'
+    ]);
+    return json_encode(json_decode($res->getBody(),true)["message"]);
+});
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('/search', 'index');
     Route::get('/search/{keys}', 'search');

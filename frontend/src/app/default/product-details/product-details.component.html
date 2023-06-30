@@ -16,7 +16,7 @@
             <div class="rating">
               <div *ngIf="product.rating;else noRating">
                 <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
-                <span>({{product.numRatings}})</span>
+                <span>({{product.number_rating}})</span>
               </div>
               <ng-template #noRating>
                 <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
@@ -25,7 +25,7 @@
             </div>
             <p class="">Brand:{{ product.brand }}</p>
             <div class="row justify-content-center">
-              <div *ngIf="!isInCart();else InCart" class="col-10">
+              <div *ngIf="quantity<=0;else InCart" class="col-10">
                 <button (click)="addToCard()" class="w-100 btn btn-sm btn-primary">
                   <i class="fas fa-plus-circle" ></i> Add to card
                 </button>
@@ -44,9 +44,9 @@
                   </div>
                 </div>
               </ng-template>
-  
+
             </div>
-  
+
           </div>
         </div>
       </div>
@@ -65,10 +65,10 @@
   <h4>Recommended Products</h4>
   <div class="row">
     <div class="card card-solid">
-      <div class="card-body pb-0">
+      <div class="card-body">
         <div class="card-deck">
           <ng-container *ngFor="let product of products;let i= index">
-            <div class="card col-4 bg-light" (click)="getProduct(product.id)" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <div class="card bg-light" (click)="getProduct(product.id)" routerLinkActive="active" ariaCurrentWhenActive="page">
               <div class="card-body pt-0" >
                 <div class="row">
                   <div class="col-7">
@@ -85,7 +85,7 @@
                     <div class="rating">
                       <div *ngIf="product.rating;else noRating">
                         <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
-                        <span>({{product.numRatings}})</span>
+                        <span>({{product.number_rating}})</span>
                       </div>
                       <ng-template #noRating>
                         <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>

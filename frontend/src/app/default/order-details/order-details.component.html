@@ -1,0 +1,51 @@
+<div class="container" *ngIf="order">
+  <h2>Order Details</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Shipping Method:</strong> {{ order.shipping_method }}</p>
+        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+        <p><strong>Total Amount:</strong> {{ order.total_amount | currency:'MAD':'symbol-narrow':'.0-0':'fr' }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Paid Status: </strong>
+           <span *ngIf="!order.paid">Not yet</span>
+           <span *ngIf="order.paid">Paid</span>
+        </p>
+      </div>
+      <div class="col-md-8">
+        <h4>Items</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Product Image</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of order.items">
+              <td>
+                <figure class="itemside me-12">
+                  <a routerLink="/default/products/{{item.product.id}}" routerLinkActive="active" ariaCurrentWhenActive="page"><img src="/api/{{item.product.imgpath}}" class="img-sm img-thumbnail"></a>
+                </figure>
+              </td>
+              <td>{{ item.product.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr' }}</td>
+              <td>{{ (item.product.price * item.quantity) | currency:'MAD':'symbol-narrow':'.0-0':'fr' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="d-flex justify-content-evenly">
+        <button class="btn mb-3 w-25 btn-warning" *ngIf="!order.paid" (click)="payOnline()">Pay now online</button>
+        <button class="btn mb-3 w-25 btn-secondary" *ngIf="!order.paid">Pay at reception<small>(no need to pay now)</small></button>
+        <button class="btn mb-3 w-25 btn-secondary" *ngIf="order.paid" (click)="tooglePaid()">Paid <small>(click to disable payment)</small></button>
+
+      </div>
+    </div>
+</div>

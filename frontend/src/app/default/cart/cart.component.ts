@@ -40,13 +40,14 @@ export class CartComponent implements OnInit {
   }
 
  changeVisibilityCartAndRouteToHome(){
-    this.cartVisbilityChanged.emit(true);
-    this.router.navigate(['/']);
- }
+   this.cartVisbilityChanged.emit(true);
+   this.router.navigate(['/']);
+  }
 
- purchase(){
-  
- }
+  purchase(){
+    this.cartVisbilityChanged.emit(true);
+    this.router.navigate(['/default/checkout']);
+  } 
 
 
 }

@@ -15,41 +15,42 @@
               <button class="btn btn-outline-success my-2 my-sm-0" type=button (click)="search(searchProductInput.value)">Search</button>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item" *ngIf="user;else noUserConnnect">
+              <li class="nav-item" *ngIf="!user">
+                <button class="btn btn-outline-primary" aria-current="page" routerLink="/account/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <span>Connexion</span>
+                </button>
+              </li>
+              <li class="nav-item" *ngIf="!user">
+                <button class="btn btn-primary" aria-current="page" routerLink="/account/auth/register" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <span>Inscription</span>
+                </button>
+              </li>
+              <li class="nav-item" *ngIf="user">
                 <a class="nav-link active" routerLink="/account/profile" routerLinkActive="active" ariaCurrentWhenActive="page">
                   <i class="fa fa-user"></i> Profile
                 </a>
               </li>
-              <ng-template #noUserConnnect>
-                <li class="nav-item pr-1 py-1">
-                  <button class="btn btn-outline-primary" aria-current="page" routerLink="/account/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page">
-                      <span>Connexion</span>
-                  </button>
-                </li>
-              </ng-template>
-              <li class="nav-item" *ngIf="user;else noUserRegister">
+              <li class="nav-item" *ngIf="user">
                 <a class="nav-link active" (click)="logout()">
                   <i class="fa fa-sign-out"></i> Logout
                 </a>
               </li>
-              <ng-template #noUserRegister>
-                <li class="nav-item pr-1 py-1">
-                  <button class="btn btn-primary" aria-current="page" routerLink="/account/auth/register" routerLinkActive="active" ariaCurrentWhenActive="page">
-                    <span>Inscription</span>
-                  </button>
-                </li>
-              </ng-template>
-              <li class="nav-item ">
+              <li class="nav-item"  *ngIf="user">
+                <a class="nav-link active" routerLink="/default/orders" routerLinkActive="active" ariaCurrentWhenActive="page">
+                  <i class="fas fa-shopping-bag"></i> My orders
+                </a>
+              </li>
+              <li class="nav-item">
                   <a class="nav-link active" routerLink="/default/help" routerLinkActive="active" ariaCurrentWhenActive="page">
                   <i class="fa fa-question-circle"></i> Help
                 </a>
-
               </li>
               <li class="nav-item ">
                 <a class="nav-link active" (click)="changeVisibilityCart()">
                   <i class="fa fa-shopping-cart"></i> Cart
                 </a>
               </li>
+
             </ul>
 
         </div>

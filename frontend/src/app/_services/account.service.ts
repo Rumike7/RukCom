@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, lastValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -40,10 +40,12 @@ export class AccountService {
     }
 
     saveAndEmit(user:User){
-      console.log(user);
+      if(!user)return;
+      console.log({user});
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
     }
+  
 
     logout() {
         // remove user from local storage and set current user to null
@@ -69,7 +71,7 @@ export class AccountService {
         return this.http.get<User[]>(`/api/users`);
     }
 
-    getById(id: string) {
+    getById(id:number) {
         return this.http.get<User>(`/api/users/${id}`);
     }
 
@@ -95,5 +97,13 @@ export class AccountService {
                 return x;
             }));
     }
+
+    async getUser(id :number): Promise<User> {
+      const user$=await this.getById(id);
+      const user= await lastValueFrom(user$);
+      return user;
+    }
+    
+    
 }
 

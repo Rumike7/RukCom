@@ -35,9 +35,9 @@ export class ProductsComponent implements OnInit {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
-      discount: ['0'],
-      quantity: ['', Validators.required],
+      price: [0, Validators.required],
+      discount: [0],
+      quantity: [0, Validators.required],
       about: [''],
       category: ['',Validators.required],
       brand: ['',Validators.required],
@@ -94,11 +94,11 @@ export class ProductsComponent implements OnInit {
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
     }
-    console.log(formData);
+
     this.productService.create(formData).subscribe({
       next: (res) => {
         console.log(res);
-        this.alertService.success(`Product ${res.name} has been created!`, { keepAfterRouteChange: true });
+        this.alertService.success(`Product has been created!`, { keepAfterRouteChange: true });
         this.productService.gets();
       },
       error: error => {
@@ -128,7 +128,7 @@ export class ProductsComponent implements OnInit {
     this.productService.update(updatedProduct,this.selectedProductId).subscribe({
       next: (res) => {
         console.log(res);
-        this.alertService.success(`Product ${res.name} has been updated!`, { keepAfterRouteChange: true });
+        this.alertService.success(`Product has been updated!`, { keepAfterRouteChange: true });
         this.productService.gets();
       },
       error: error => {

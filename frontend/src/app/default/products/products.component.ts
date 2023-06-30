@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '@app/_interfaces/product.interface';
+import { GeneralService } from '@app/_services/general.service';
 import { ProductService } from '@app/_services/product.service';
 
 @Component({
@@ -9,18 +10,20 @@ import { ProductService } from '@app/_services/product.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[]=[];
-  numberPerPage:number=6;
+  numberPerPage:number=4;
   pagesFromOne:number[]=[];
   page:number=0;
   numberOfPage:number=0;
 
   constructor(
     private productService: ProductService,
+    public general: GeneralService
   ) { }
 
   ngOnInit(): void {
     this.productService.fildtredProducts.subscribe((res:Product[])=>{
       this.products=res;
+      this.products=this.general.shuffle(this.products);
       const numProduct=this.products.length;
       this.numberOfPage=Math.ceil(numProduct/this.numberPerPage);
       for(let i=0;i<this.numberOfPage;i++){

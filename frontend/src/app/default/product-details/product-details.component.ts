@@ -28,10 +28,8 @@ export class ProductDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     const productId=Number(this.route.snapshot.paramMap.get('id'));
+    console.log({productId});
     this.getProduct(productId);
-  }
-  isInCart():boolean{
-    return this.cartService.isInCart(this.product);
   }
 
   addToCard(){
@@ -61,13 +59,10 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.get(id).subscribe({
       next:(res:Product)=>{
         this.product=res;
+        this.quantity=this.cartService.getQuantity(this.product);
         this.products=this.productService.allProducts.value;
         this.products=this.general.shuffle(this.products);
         this.products=this.products.slice(0,3);
-        console.log("LENGTH");
-        console.log(this.products.length);
-        console.log(this.products);
-
         console.log(res);
       },
       error:(err:any)=>{

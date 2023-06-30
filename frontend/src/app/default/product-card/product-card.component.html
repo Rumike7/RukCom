@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-7">
     <h4>{{ product.name }}</h4>
-    <p class="">{{ product.description }}</p>
+    <small>{{ product.description }}</small>
     <hr>
   </div>
-  <div class="col-5 text-center">
+  <div class="col-5 d-flex justify-content-center align-items-center">
     <img src="/api/{{product.imgpath }}" alt="{{ product.name }}" class="img-fluid">
   </div>
 </div>
@@ -13,7 +13,7 @@
     <div class="rating">
       <div *ngIf="product.rating;else noRating">
         <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(product.rating,star)"></i>
-        <span>({{product.numRatings}})</span>
+        <span>({{product.number_rating}})</span>
       </div>
       <ng-template #noRating>
         <i *ngFor="let star of general.stars" class="fa filled-gold" [ngClass]="general.starClass(0,star)"></i>
@@ -24,7 +24,7 @@
     <div class="price">
         <span class="lead font-weight-bold">{{ product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</span>
     </div>
-    <div *ngIf="product.discount" class="discount"><span class="bg-success">Save {{ product.discount | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</span></div>
+    <div *ngIf="product.discount" class="discount"><span class="bg-success">Save {{ product.discount | currency:'%':'symbol-narrow':'.0-0':'fr'}}</span></div>
   </div>
   <div class="col-12">
     <div class="row">

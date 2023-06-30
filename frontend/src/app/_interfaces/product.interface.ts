@@ -1,4 +1,4 @@
-import { AdminEnumsService } from "@app/_services/admin-enums.service";
+import { User } from "./user.interface";
 
 export interface Product {
   id: number;
@@ -8,7 +8,7 @@ export interface Product {
   discount?: number;
   quantity: number;
   rating?: number;
-  numRatings?: number;
+  number_rating?: number;
   type?: string;
   about?: string;
   image?: any;
@@ -24,6 +24,27 @@ export interface Product {
 export interface CartItem {
   product: Product,
   quantity: number
+}
+
+export interface Order {
+  id: number;
+  user_id: number;
+  items: CartItem[];
+  shipping_method: string;
+  order_date: string;
+  total_amount: number;
+  status: string;
+  paid: boolean;
+  user: User;
+  rating:number;
+}
+
+export interface Rating {
+  id?: number;
+  user_id: number;
+  product_id: number;
+  comment: string;
+  rating: number;
 }
 
 

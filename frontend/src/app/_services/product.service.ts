@@ -12,15 +12,15 @@ export class ProductService {
   allProducts=new BehaviorSubject<Product[]>([]);
   fildtredProducts=new BehaviorSubject<Product[]>([]);
   constructor(private http: HttpClient) {
-    this.gets();
-  }
-
-  gets(){
-    return this.http.get<Product[]>(this.apiUrl).subscribe((res:Product[]) => {
+    this.gets().subscribe((res:Product[]) => {
       console.log(res);
       this.allProducts.next(res);
       this.fildtredProducts.next(res);
     });
+  }
+
+  gets(){
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
   getAll(){
@@ -46,9 +46,10 @@ export class ProductService {
   }
 
   create(product: any): Observable<Product> {
+    console.log({product});
     return this.http.post<any>(this.apiUrl, product);
   }
-
+  
   update(product: any,id:number): Observable<Product> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<any>(url, product);

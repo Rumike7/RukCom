@@ -30,7 +30,7 @@ class StoreProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
-            'discount' => 'numeric|min:0|max:price',
+            'discount' => 'numeric|min:0|max:100',
             'quantity' => 'required|integer|min:0',
             'rating' => 'integer|min:0|max:5',
             'type' => 'nullable|string|max:255',

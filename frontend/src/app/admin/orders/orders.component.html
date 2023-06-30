@@ -1,0 +1,152 @@
+<div style="padding: 2%;">
+  <div class="card card-primary card-outline">
+    <div class="card-header">
+      <h3 class="card-title">Inbox</h3>
+
+      <div class="card-tools">
+        <div class="input-group input-group-sm">
+          <!-- (keyup)="search(searchProductInput.value)" -->
+          <input #searchProductInput  type="text" class="form-control" placeholder="Search Products">
+          <div class="input-group-append">
+            <div class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-tools -->
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <div class="mailbox-controls">
+        <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm"><i class="fas fa-plus-circle"></i>Add new product</button>
+        <!-- Check all button -->
+        <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+        </div>
+        <!-- /.btn-group -->
+        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+        <div class="float-right">
+          1-50/200
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <!-- /.btn-group -->
+        </div>
+        <!-- /.float-right -->
+      </div>
+      <div class="table-responsive mailbox-messages">
+        <table class="table table-hover table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 1%">
+                  #
+              </th>
+              <th style="width: 10%">
+                  Username
+              </th>
+              <th style="width: 10%">
+                  Price
+              </th>
+              <th style="width: 30%">
+                  Products
+              </th>
+              <th>
+                  Shipping Method
+              </th>
+              <th style="width: 8%" class="text-center">
+                  Status
+              </th>
+              <th style="width: 8%" class="text-center">
+                  Paid
+              </th>
+              <th style="width: 25%">
+                Rating
+              </th>
+          </tr>
+            <tr *ngFor="let order of orders">
+              <td>
+                {{order.id}}
+              </td>
+              <td>
+                <span >{{order.user.username}}</span>
+              </td>
+              <td>
+                <div class="text-center">
+                  {{order.total_amount | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}
+                </div>
+              </td>
+              <td>
+                  <ul class="list-inline">
+                      <li class="list-inline-item" *ngFor="let item of order.items">
+                        <figure class="itemside me-12">
+                          <a routerLink="/default/products/{{item.product.id}}" routerLinkActive="active" ariaCurrentWhenActive="page"><img src="/api/{{item.product.imgpath}}" class="img-sm img-thumbnail"></a>
+                        </figure>
+                      </li>
+
+                  </ul>
+              </td>
+              <td class="project_progress">
+                  <span>
+                    {{order.shipping_method}}
+                  </span>
+              </td>
+              <td class="project-state">
+                  <a [routerLink] routerLinkActive="active" (click)="updateStatus(order)">
+                    <span class="badge badge-success">{{order.status}}</span>
+                  </a>
+                </td>
+                <td class="project-state">
+                  <a [routerLink] routerLinkActive="active" (click)="tooglePaid(order)">
+                    <span class="badge badge-secondary" *ngIf="order.paid" >Paid</span>
+                    <span class="badge badge-info" *ngIf="!order.paid" >Not yet</span>
+                  </a>
+              </td>
+              <td>
+                <span *ngIf="!order.rating">Please rate</span>
+                <span *ngIf="order.rating">
+                  <span class="star filled-gold" *ngFor="let star of [1, 2, 3, 4, 5]">
+                    <i class="fa-star"[ngClass]="{ 'fa': star <= order.rating ,'far':star > order.rating}"></i>
+                  </span>
+                </span>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- /.table -->
+      </div>
+      <!-- /.mail-box-messages -->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer p-0">
+      <div class="mailbox-controls">
+        <!-- Check all button -->
+        <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+        </div>
+        <!-- /.btn-group -->
+        <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+        <div class="float-right">
+          1-50/200
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <!-- /.btn-group -->
+        </div>
+        <!-- /.float-right -->
+      </div>
+    </div>
+  </div>
+</div>
+
+

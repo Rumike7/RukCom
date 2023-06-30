@@ -4,9 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\PaymentMethods;
 
 class User extends Authenticatable
 {
@@ -18,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
+        'credit_card_number',
         'email',
         'password',
      ];
@@ -45,6 +47,10 @@ class User extends Authenticatable
 
     public function uploads()
     {
-    return $this->hasMany(Upload::class);
+        return $this->hasMany(Upload::class);
+    }
+
+    public function paymentMethods(): HasOne{
+        return $this->hasOne(PaymentMethods::class);
     }
 }

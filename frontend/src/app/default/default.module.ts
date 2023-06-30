@@ -10,7 +10,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { HelpComponent } from './help/help.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { PayOnlineComponent } from './pay-online/pay-online.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 
@@ -23,13 +28,19 @@ import { FormsModule } from '@angular/forms';
     ProductDetailsComponent,
     HelpComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    CheckoutComponent,
+    OrdersComponent,
+    OrderDetailsComponent,
+    PayOnlineComponent,
+    RatingComponent
   ],
   imports: [
     CommonModule,
     NavComponent,
     DefaultRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DefaultModule { }

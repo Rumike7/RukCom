@@ -1,7 +1,5 @@
-<aside class="control-sidebar control-sidebar-light w-50">
-
-  <div class="container p-3 h-100">
-
+<aside class="control-sidebar control-sidebar-light w-50 border-2" style="position:fixed;">
+  <div class="container p-3 m-2 overflow-auto vh-100">
     <div class="row">
       <div class="col-12 p-1">
         <div class="card" *ngIf="cartItems.length>0;else noCartItem">
@@ -20,13 +18,13 @@
             <div class="col-3">
               <div class="row justify-content-around">
                 <button type="button" class="btn rounded-circle btn-secondary col-1 " (click)="updateCartItem(item,item.quantity-1)">-</button>
-                <input type="number" class="form-control col-6" [(ngModel)]="item.quantity" (change)="updateCartItem(item,item.quantity)">
+                <input type="number" class="form-control col-5" [(ngModel)]="item.quantity" (change)="updateCartItem(item,item.quantity)">
                 <button type="button" class="btn rounded-circle btn-secondary col-1 " (click)="updateCartItem(item,item.quantity+1)">+</button>
               </div>
             </div>
             <div class="col-3">
               <div class="price-wrap lh-sm">
-                <var class="price h6"></var> {{ item.product.price*item.quantity | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} <br>
+                <var class="price h5"></var> {{ item.product.price*item.quantity | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} <br>
                 <small class="text-muted"> {{ item.product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} / per item </small>
               </div>
             </div>
@@ -41,9 +39,6 @@
         </div>
         <div class="card-footer border-top">
           <p><i class="me-2 text-muted fa-lg fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
         </div>
 
         </div>
@@ -62,24 +57,22 @@
       </div>
     </div>
     <div class="row">
-        <dl class="dlist-align">
-          <dt>Total price:</dt>
-          <dd class="text-end"> {{ calculateTotal() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</dd>
-        </dl>
-        <dl class="dlist-align">
-          <dt>Discount:</dt>
-          <dd class="text-end text-success">{{ calculateDiscount() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} </dd>
-        </dl>
-        <hr>
-        <dl class="dlist-align">
-          <dt>Total:</dt>
-          <dd class="text-end text-dark h5"> {{ calculateTotal()-calculateDiscount() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</dd>
-        </dl>
+      <div class="col">
+        <div class="row justify-content-between">
+          <div class="col-5">Total price:</div>
+          <div class="col-5"> {{ calculateTotal() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</div>
 
+          <div class="col-5">Discount:</div>
+          <div class="col-5 text-success">{{ calculateDiscount() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} </div>
+
+          <div class="col-5">Total:</div>
+          <div class="col-5 text-dark h5"> {{ calculateTotal()-calculateDiscount() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</div>
+        </div>
         <div class="d-grid gap-2 my-3">
           <a (click)="purchase()" class="btn btn-success w-100"> Make Purchase </a>
           <a (click)="changeVisibilityCartAndRouteToHome()" class="btn btn-light w-100"> Back to shop </a>
         </div>
+      </div>
     </div>
   </div>
 </aside>

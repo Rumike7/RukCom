@@ -11,6 +11,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AsidebarComponent } from './asidebar/asidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     TopbarComponent,
     FooterComponent,
-    AsidebarComponent
+    AsidebarComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

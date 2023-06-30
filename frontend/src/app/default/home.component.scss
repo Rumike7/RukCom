@@ -1,3 +1,86 @@
 .app-nav{
  z-index:1;
 }
+body {
+  background-color: #eee
+}
+
+.chat-btn {
+  position: fixed;
+  right: 14px;
+  bottom: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  z-index:2000;
+}
+
+.chat-btn .close {
+  display: none
+}
+
+.chat-btn i {
+  transition: all 0.9s ease
+}
+
+#check:checked~.chat-btn .close {
+  display: block;
+  pointer-events: auto;
+  transform: rotate(180deg)
+}
+
+#check:checked~.chat-btn .comment {
+  display: none
+}
+
+.chat-btn .comment, .chat-btn .close {
+  font-size: 22px;
+  color: #fff !important
+}
+
+.wrap {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: none;
+  transition: all 0.4s;
+  z-index:2000;
+}
+
+#check:checked~.wrap {
+  display: block
+}
+
+
+
+.chat-form {
+  padding: 15px
+}
+
+.chat-form input,
+textarea,
+button {
+  margin-bottom: 10px
+}
+
+.chat-form textarea {
+  resize: none
+}
+
+.form-control:focus,
+.btn:focus {
+  box-shadow: none
+}
+#check {
+  display: none !important
+}

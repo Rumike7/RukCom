@@ -30,6 +30,13 @@ export class GeneralService {
     //     a[j] = x;
     // }
     return a;
-}
+  }
+
+  hideloader() {
+    document.getElementById('loading')!.style.display = 'none';
+  }
+  showloader() {
+    document.getElementById('loading')!.style.display = 'block';
+  }
 
 }

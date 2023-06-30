@@ -190,4 +190,29 @@ class ProductController extends Controller
 
         return response()->json(['products' => $products]);
     }
+
+    public function setRatings($productId)
+    {
+
+        $product = Product::find($productId);
+        if (!$product) {
+            session()->flash('error', 'Product not found.');
+            return response()->json(['error' => 'Product not found.'], 404);
+        }
+        $ratings=$product->ratings;
+        $sum=0;
+        foreach ($ratings as $r){
+            $sum+=$r->rating;
+        }
+        $sum/=count($ratings);
+        $product->rating=$sum;
+        $product->number_rating=count($ratings);
+
+        if (!$product->save()) {
+            return response()->json(['error' => 'Failed to set rating.'], 500);
+        }
+
+        return $product;
+
+    }
 }

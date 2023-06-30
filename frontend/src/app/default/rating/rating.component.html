@@ -1,0 +1,64 @@
+<form [formGroup]="ratingForm" *ngIf="order">
+  <div *ngIf="currentStep >= 0 && currentStep<order.items.length">
+    <article class="row gy-3 mb-4" *ngIf="currentItem">
+      <div class="col-8">
+        <figure class="itemside me-12">
+          <div class="aside m-1"><img src="/api/{{currentItem.product.imgpath}}" class="img-sm img-thumbnail"></div>
+          <figcaption class="info">
+            <a href="#" class="title">{{currentItem.product.name}}</a>
+            <p class="text-muted"> {{currentItem.product.brand}}, {{currentItem.product.category}} </p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="col-4">
+        <div class="price-wrap lh-sm">
+          <var class="price h5"></var> {{ currentItem.product.price*currentItem.quantity | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} <br>
+          <small class="text-muted"> {{ currentItem.product.price | currency:'MAD':'symbol-narrow':'.0-0':'fr'}} / per item </small>
+        </div>
+      </div>
+
+    </article>
+    <div formArrayName="ratings">
+      <div [formGroupName]="currentStep">
+        <div>
+          <label>Rating:</label>
+          <div class="star-rating d-flex justify-content-center">
+            <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{ 'rated': star <= currentRating }" (click)="setRating(star)">
+              <i class="fa-star"[ngClass]="{ 'fa': star <= currentRating ,'far':star > currentRating}"></i>
+            </span>
+          </div>
+        </div>
+        <div>
+          <label>Comment:</label>
+          <textarea formControlName="comment" [(ngModel)]="currentComment"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-primary" (click)="prevStep()" [disabled]="currentStep === 0">Previous</button>
+      <button type="button" class="btn btn-primary" (click)="nextStep()" [disabled]="!ratingControls2[currentStep].valid">Next</button>
+    </div>
+  </div>
+  <div *ngIf="currentStep >= order.items.length">
+    <h3>Review and Submit</h3>
+    <div>
+      <p>Please review your ratings and comments before submitting:</p>
+      <ul>
+        <li *ngFor="let it of order.items; let i = index" >
+          <strong>{{it.product.name}}</strong>
+          <p *ngIf="ratings.controls[i].get('rating')">Rating:
+            <span class="star filled-gold" *ngFor="let star of [1, 2, 3, 4, 5]">
+              <i class="fa-star"[ngClass]="{ 'fa': star <= ratings.controls[i].get('rating')!.value ,'far':star > ratings.controls[i].get('rating')!.value}"></i>
+            </span>
+          </p>
+          <p *ngIf="ratings.controls[i].get('comment') && ratings.controls[i].get('comment')!.value!=''">Comment: {{ ratings.controls[i].get('comment')!.value }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-primary" (click)="prevStep()">Previous</button>
+      <button type="submit" class="btn btn-success" [disabled]="!ratingForm.valid" (click)="nextStep()" data-dismiss="modal">Submit</button>
+    </div>
+  </div>
+</form>
