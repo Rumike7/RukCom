@@ -17,9 +17,9 @@ export class FileUploadService {
   public filesProgress: Observable<FileProgress[]>;
   private fileFormSubject:BehaviorSubject<FileForm>;
   public fileForm: Observable<FileForm>;
-  error:boolean=false; 
+  error:boolean=false;
 
-    
+
   constructor(private http:HttpClient, private router:Router,
     private accountService:AccountService) {
     this.fileUploadSubject = new BehaviorSubject<FileProgress[]>((JSON.parse(<string>localStorage.getItem('filesProgress'))));
@@ -27,7 +27,7 @@ export class FileUploadService {
     this.fileFormSubject = new BehaviorSubject<FileForm>((JSON.parse(<string>localStorage.getItem('fileForm'))));
     this.fileForm=this.fileFormSubject.asObservable();
    }
-  
+
   // Returns an observable
   upload(file:File):Observable<any> {
       const formData = new FormData();
@@ -35,8 +35,8 @@ export class FileUploadService {
       formData.append("email", this.accountService.userValue.email);
       formData.append("domain", this.f.domain);
       formData.append("faculty", this.f.faculty);
-      
-      return this.http.post(environment.apiUrl+'/file/uploading', formData, {
+
+      return this.http.post('/api/file/uploading', formData, {
         reportProgress: true,
         observe: 'events'
     })
@@ -58,18 +58,18 @@ export class FileUploadService {
     const upload$ = this.upload(fileProgress.file).pipe(
       finalize(() => this.reset(fileProgress))
     );
-    
+
     upload$.subscribe(event => console.log(event));
 
   fileProgress.uploadSub = upload$.subscribe({
     next:(event) => {
       if (event.type == HttpEventType.UploadProgress) {
-        if(event.total===undefined) 
+        if(event.total===undefined)
           fileProgress.uploadProgress =undefined;
         else
           fileProgress.uploadProgress = Math.round(100 * (event.loaded / event.total));
       }
-    }, 
+    },
     error:(err:any)=>{
       fileProgress.error=true;
       console.log(err);

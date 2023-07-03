@@ -98,7 +98,10 @@
     <p>Order Total:  {{ calculateTotal() | currency:'MAD':'symbol-narrow':'.0-0':'fr'}}</p>
     <div class="d-flex justify-content-between">
       <button class="btn btn-primary" (click)="prevStep()">Previous</button>
-      <button class="btn btn-success" (click)="placeOrder()">Place Order</button>
+      <button [disabled]="submitted" class="btn btn-success" (click)="placeOrder()">
+        <span *ngIf="submitted" class="spinner-border spinner-border-sm mr-1"></span>
+        Place Order
+      </button>
     </div>
   </div>
 

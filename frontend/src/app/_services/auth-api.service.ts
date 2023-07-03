@@ -12,7 +12,7 @@ import {User} from 'src/app/_interfaces/user.interface';
   providedIn: 'root'
 })
 export class AuthApiService {
-  readonly ROOT_URL = environment.apiUrl+"auth";
+  readonly ROOT_URL = /api+"auth";
 
   constructor(private http:HttpClient){}
 

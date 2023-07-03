@@ -8,11 +8,22 @@
         <div class="card-body">
           <h3>{{ user.username }}</h3>
           <p class="card-text">Email: {{ user.email }}</p>
-          <p class="card-text">Phone: +1 123-456-7890</p>
-          <p class="card-text">Address: 123 Main St, Anytown, USA</p>
-          <p class="card-text">Date of Birth: January 1, 1990</p>
-          <p class="card-text">Gender: Male</p>
-          <p class="card-text">Member Since: January 2021</p>
+          <p class="card-text">Name:
+            <span *ngIf="userShippingAddress && userShippingAddress.firstName && userShippingAddress.lastName">{{userShippingAddress.firstName}} {{userShippingAddress.lastName}}</span>
+            <span *ngIf="!userShippingAddress || !userShippingAddress.firstName || !userShippingAddress.lastName">Not yet set</span>
+          </p>
+          <p class="card-text">Phone:
+            <span *ngIf="userShippingAddress && userShippingAddress.phoneNumber">{{userShippingAddress.phoneNumber}}</span>
+            <span *ngIf="!userShippingAddress || !userShippingAddress.phoneNumber">Not yet set</span>
+          </p>
+          <p class="card-text">Address:
+            <span *ngIf="userShippingAddress && userShippingAddress.streetAddress && userShippingAddress.city">{{userShippingAddress.streetAddress}},{{userShippingAddress.city}}</span>
+            <span *ngIf="!userShippingAddress || !userShippingAddress.streetAddress || !userShippingAddress.city">Not yet set</span>
+          </p>
+          <p class="card-text">Member Since:
+            <span *ngIf="user.created_at">{{user.created_at}}</span>
+            <span *ngIf="!user.created_at">Not yet set</span>
+          </p>
 
           <a routerLink="../update-profile" routerLinkActive="active" ariaCurrentWhenActive="page" class="btn btn-primary">Edit Profile</a>
           <a [routerLink] (click)="logout()" routerLinkActive="active" ariaCurrentWhenActive="page" class="btn btn-danger">Delete Account</a>

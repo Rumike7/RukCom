@@ -24,7 +24,7 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getAllByUser().subscribe((res:Order[]) => {
       console.log({res});
-      this.orders=res;
+      this.orders=res.slice().reverse();
       console.log(this.orders);
     })
   }

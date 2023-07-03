@@ -91,15 +91,15 @@ export class CheckoutComponent implements OnInit {
   placeOrder(){
     this.submitted=true;
     if(!this.f['items'].valid)return;
-    this.submitted=false;
     console.log("onboardingForm");
     console.log(this.onboardingForm.value);
     const userId=Number(this.accountService.userValue.id);
     
     this.orderService.createByUser(this.fv,this.cartItems).subscribe(r=>{
       this.accountService.getById(userId).subscribe((data:any)=>{
-          this.accountService.saveAndEmit(data);
+        this.accountService.saveAndEmit(data);
       });
+      this.submitted=false;
       this.alertService.success(`Order has been created!`, { keepAfterRouteChange: true });
       this.router.navigate(['/default/orders']);
     });

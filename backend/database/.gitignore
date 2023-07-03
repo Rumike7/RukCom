@@ -1,1 +1,8 @@
 *.sqlite*
+
+# Public Code
+/public/*
+!/public/favicon.ico
+!/public/.htaccess
+!/public/index.php
+!/public/robots.txt

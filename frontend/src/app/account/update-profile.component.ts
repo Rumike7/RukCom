@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '@app/_interfaces/user.interface';
+import { ShippingAddress, User } from '@app/_interfaces/user.interface';
 import { AccountService } from '@app/_services/account.service';
 import { AlertService } from '@app/_services/alert.service';
 import { first } from 'rxjs/operators';
@@ -12,9 +13,11 @@ import { first } from 'rxjs/operators';
 })
 export class UpdateProfileComponent {
   user:User;
+  userShippingAddress!:ShippingAddress;
   loading: boolean= false;
 
   constructor(
+    private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
@@ -25,7 +28,12 @@ export class UpdateProfileComponent {
 
 
   ngOnInit(): void {
-
+    if(this.user.shipping_address_id){
+      const url = `/api/shipping/${this.accountService.userValue.shipping_address_id}/`;
+      this.http.get<ShippingAddress>(url).subscribe((r:ShippingAddress)=>{
+        if(r)this.userShippingAddress=r;
+      });
+    }
   }
 
   updateProfile() {
@@ -46,5 +54,6 @@ export class UpdateProfileComponent {
                     this.loading = false;
                 }
             });
+    //TODO:Update shipping address
   }
 }

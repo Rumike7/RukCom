@@ -22,22 +22,22 @@ export class BookService {
   }
   public get bookValue(): Book {
       return this.bookSubject.value;
-  }    
+  }
   setBook(book:Book){
     localStorage.setItem('book', JSON.stringify(book));
     this.bookSubject.next(book);
-  }  
+  }
   getUnverifiedBook(){
-    return this.http.get<Book[]>(`${environment.apiUrl}/admin/unverifiedBooks`);
+    return this.http.get<Book[]>(`/api/admin/unverifiedBooks`);
   }
   getVerifiedBook(){
-    return this.http.get<Book[]>(`${environment.apiUrl}/admin/verifiedBooks`);
+    return this.http.get<Book[]>(`/api/admin/verifiedBooks`);
   }
   accept(book:Book){
-    return this.http.post(`${environment.apiUrl}/admin/accept`, book);
+    return this.http.post(`/api/admin/accept`, book);
   }
   reject(book:Book){
-    return this.http.post(`${environment.apiUrl}/admin/reject`,book);
+    return this.http.post(`/api/admin/reject`,book);
   }
 
   getFirstBook(number: number){
@@ -49,6 +49,6 @@ export class BookService {
   }
 
   search(form:FormGroup<any>,keysearch:boolean){
-      return this.http.post(environment.apiUrl+'/search/',{form:form.value,keysearch:keysearch});
+      return this.http.post('/api/search/',{form:form.value,keysearch:keysearch});
   }
 }
