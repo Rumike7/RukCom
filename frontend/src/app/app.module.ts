@@ -30,7 +30,6 @@ import { TestComponent } from './test/test.component';
     BookComponent,
     SearchBarComponent,
     NewsletterComponent,
-    AlertComponent,
     HomeComponent,
     PreviewComponent,
     ContactComponent,

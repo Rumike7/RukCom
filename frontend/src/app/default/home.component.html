@@ -1,6 +1,7 @@
 
   <app-nav (cartVisbilityChanged)="handleVisibilityCartChange($event)"></app-nav>
   <div class="container">
+    <app-alert></app-alert>
     <router-outlet></router-outlet>
   </div>
   <app-cart (cartVisbilityChanged)="handleVisibilityCartChange($event)"></app-cart>

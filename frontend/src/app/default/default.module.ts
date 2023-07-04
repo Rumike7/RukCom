@@ -16,6 +16,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { PayOnlineComponent } from './pay-online/pay-online.component';
 import { RatingComponent } from './rating/rating.component';
+import { AlertComponent } from '@app/alert/alert.component';
 
 
 
@@ -39,6 +40,7 @@ import { RatingComponent } from './rating/rating.component';
     CommonModule,
     NavComponent,
     DefaultRoutingModule,
+    AlertComponent,
     FormsModule,
     ReactiveFormsModule
   ]

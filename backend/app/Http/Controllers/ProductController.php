@@ -170,7 +170,7 @@ class ProductController extends Controller
 
     public function search(Request $request,$k)
     {
-        if($k=='')return response()->json(['products' => []]);
+        if($k==null || $k=='')return response()->json(['products' => []]);
         $keys = explode(' ', $k);
 
         $products = Product::where(function ($query) use ($keys) {

@@ -43,7 +43,7 @@ Route::get('rated/{userId}/{productId}', function ($userId,$productId){
     if(!$rating)return -1;
     return $rating->id;
 });
-Route::get('ratings/products/{productId}', [ProductController::class,'setRatings']); 
+Route::get('ratings/products/{productId}', [ProductController::class,'setRatings']);
 Route::get('ratings/orders/{userId}/{orderId}', [OrderByUserController::class,'setRatings']);
 
 Route::post('/chat', function (Request $request){
@@ -61,7 +61,7 @@ Route::post('/chat', function (Request $request){
 });
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('/search', 'index');
-    Route::get('/search/{keys}', 'search');
+    Route::get('/search/{keys?}', 'search');
 });
 
 //Authentication routes

@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AsidebarComponent } from './asidebar/asidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrdersComponent } from './orders/orders.component';
+import { AlertComponent } from '@app/alert/alert.component';
 
 
 
@@ -30,6 +31,7 @@ import { OrdersComponent } from './orders/orders.component';
   ],
   imports: [
     CommonModule,
+    AlertComponent,
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule

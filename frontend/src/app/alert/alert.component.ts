@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 import { Alert, AlertType } from 'src/app/_interfaces/alert.interface';
 import { AlertService } from 'src/app/_services/alert.service';
 
-@Component({ selector: 'app-alert', templateUrl: 'alert.component.html' })
+@Component({
+  standalone: true,
+  imports:[CommonModule],
+  selector: 'app-alert',
+  templateUrl: 'alert.component.html'
+  })
 export class AlertComponent implements OnInit, OnDestroy {
     @Input() id = 'default-alert';
     @Input() fade = true;
